@@ -1,5 +1,5 @@
 import requests
-from src.utils.funcoes import pegar_ano
+from src.utils.funcoes import pegar_ano, formatar_data
 
 ano = pegar_ano()
 
@@ -9,9 +9,7 @@ url = f'https://brasilapi.com.br/api/feriados/v1/{ano}'
 response = requests.get(url)
 # Verifica o número do status HTTP da requisição da url
 if response.status_code == 200:
-    # Converte as informações da página para arquivo JSON
-    dados_response = response.json() 
-    for data in dados_response:
-        data_separada = data["date"].split('-') 
-        data_invertida = data_separada[::-1] 
-        data_formatada = '-'.join(data_invertida)
+    dados_response = response.json()
+    for feriado in dados_response:
+        data_formatada = formatar_data(feriado['date'])
+        print(data_formatada, feriado['name'])

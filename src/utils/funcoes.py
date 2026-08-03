@@ -13,6 +13,11 @@ def pegar_ano():
         ano = int(entrada)
         return ano
 
+def formatar_data(data_str):
+    partes = data_str.split('-')
+    invertido = partes[::-1]
+    return '/'.join(invertido)
+
 # Área para testes
 if __name__ == '__main__':
     vari = pegar_ano()
