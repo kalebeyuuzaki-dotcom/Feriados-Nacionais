@@ -11,5 +11,5 @@ response = requests.get(url)
 if response.status_code == 200:
     dados_response = response.json()
     for feriado in dados_response:
-        data_formatada = formatar_data(feriado['date'])
+        data_formatada = formatar_data(feriado['date'], "-")
         print(data_formatada, feriado['name'])
