@@ -1,5 +1,5 @@
 .vscode/
 .venv/
-.database/
+database.db
 **/__pycache__/
 *.pyc
