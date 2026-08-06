@@ -18,10 +18,11 @@ def criar_db():
     conn.close()
 
 def inserir_feriado(lista_feriado):
+    """Insere uma lista de dicionários ao database.db"""
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO feriados (date, name)
+    cursor.executemany('''
+        INSERT INTO feriados (data, nome)
         VALUES (:date, :name)
     ''', lista_feriado)
 
