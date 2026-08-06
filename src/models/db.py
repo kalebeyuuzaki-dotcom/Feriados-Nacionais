@@ -16,3 +16,14 @@ def criar_db():
 
     conn.commit()
     conn.close()
+
+def inserir_feriado(lista_feriado):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO feriados (date, name)
+        VALUES (:date, :name)
+    ''', lista_feriado)
+
+    conn.commit()
+    conn.close()

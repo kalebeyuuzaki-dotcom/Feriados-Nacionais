@@ -1,5 +1,7 @@
 import requests
+
 from src.utils.funcoes import pegar_ano, formatar_data
+from src.models.db import inserir_feriado
 
 ano = pegar_ano()
 
@@ -12,4 +14,9 @@ if response.status_code == 200:
     dados_response = response.json()
     for feriado in dados_response:
         data_formatada = formatar_data(feriado['date'], "-")
-        print(data_formatada, feriado['name'])
+
+
+
+# '''O programa irá consumir a API da Brasil API para consultar feriados de 2026 até 2100 e guardar no banco de dados
+# deve se iniciar com um for in range para cada {ano} na url, receber os dados em json e depois salvar no banco de dados.
+# '''
