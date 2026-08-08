@@ -7,7 +7,8 @@ from src.models.db import criar_db, inserir_feriado
 criar_db()
 lista_feriados = []
 
-for ano in range(2114, 2115):
+for ano in range(1900, 2027):
+    try:
         url = f'https://brasilapi.com.br/api/feriados/v1/{ano}'
         response = requests.get(url)
 
@@ -22,6 +23,19 @@ for ano in range(2114, 2115):
                     'name': feriado['name']
                 }
                 lista_feriados.append(dados_tratados)
-        time.sleep(5)
+
+        elif response.status_code == 400:
+            print("Erro. Ano não informado. ")
+
+        elif response.status_code == 404:
+            print("Erro. Ano fora do intervalo suportado. ")
+
+        elif response.status_code == 500:
+            print("Erro interno no serviço de feriados. ")
+
+        time.sleep(1)
+            
+    except ValueError as e:
+        print(f"Erro inesperado. {e}")
 
 inserir_feriado(lista_feriados)
