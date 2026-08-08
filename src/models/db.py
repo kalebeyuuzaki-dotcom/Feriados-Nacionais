@@ -22,9 +22,10 @@ def inserir_feriado(lista_feriado):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.executemany('''
-        INSERT INTO feriados (data, nome)
+        INSERT OR IGNORE INTO feriados (data, nome)
         VALUES (:date, :name)
     ''', lista_feriado)
 
     conn.commit()
+    print('Sucesso: novos feriados adicionados ao banco de dados. ')
     conn.close()
