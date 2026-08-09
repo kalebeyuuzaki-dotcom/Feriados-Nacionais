@@ -2,7 +2,7 @@ import requests
 import time
 
 from src.utils.funcoes import pegar_ano, formatar_data
-from src.models.db import criar_db, inserir_feriado
+from src.models.db import criar_db, inserir_feriado, visualizar_tabela
 
 criar_db()
 lista_feriados = []

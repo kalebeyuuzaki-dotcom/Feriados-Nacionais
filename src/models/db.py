@@ -29,3 +29,16 @@ def inserir_feriado(lista_feriado):
     conn.commit()
     print('Sucesso: novos feriados adicionados ao banco de dados. ')
     conn.close()
+
+def visualizar_tabela():
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM feriados ORDER BY data;')
+
+    linhas = cursor.fetchall()
+
+    for linha in linhas:
+        print(linha)
+
+    conn.close()
+    
