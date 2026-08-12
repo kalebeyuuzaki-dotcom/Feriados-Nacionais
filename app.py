@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 import requests
 import time
 
@@ -6,11 +8,12 @@ from src.models.db import criar_db, inserir_feriado, visualizar_tabela
 
 criar_db()
 lista_feriados = []
+load_dotenv() # Carrega as variáveis de ambiente
 
-for ano in range(1900, 2027):
+for ano in range(2000, 2020):
     try:
-        url = f'https://brasilapi.com.br/api/feriados/v1/{ano}'
-        response = requests.get(url)
+        url_base = os.getenv('url')
+        response = requests.get(f'{url_base}{ano}')
 
         if response.status_code == 200:
             dados_response = response.json()
